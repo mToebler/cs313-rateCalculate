@@ -26,7 +26,8 @@ express()
   // this is also required for templates.
   .set('view engine', 'ejs')
   // and all these get paths are in the views/ directory
-  .get('/', (req, res) => res.render('pages/index'))
+  //.get('/', (req, res) => res.render('pages/index'))
+  .get('/', (req, res) => res.render('pages/packageform'))
   .get('/db', async (req, res) => {
     try {
       const client = await pool.connect()
@@ -79,9 +80,9 @@ calculateRate = (type, weight) => {
       break;
     case '1':
       // I don't want to do a nested switch. To make this meaningful
-      // I'm going to play around with the USPS API.  
+      // I'm going to play around with the USPS API.
       //total = 3.66;
-      // need to make this wait? 
+      // need to make this wait?
       total = uspsGetRate(weight);
       total = total == NaN ? 3.66 : total;
       console.log(total);
